@@ -4,7 +4,7 @@
   "description": "Criação de um jogo utilizando Javascript na semana da #ImersãoGameDev da Alura.",
   "main": "p5.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon sketch.js"
   },
   "repository": {
     "type": "git",
@@ -19,5 +19,8 @@
   "homepage": "https://github.com/lucasmartinsribeiro/ImersaoGameDev#readme",
   "dependencies": {
     "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
   }
 }
