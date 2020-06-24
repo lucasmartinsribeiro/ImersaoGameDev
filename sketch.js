@@ -1,12 +1,12 @@
-let imagemCenario;
-let imagemPersonagem;
-let imagemInimigo;
-let somDoPulo;
+let imagemCenario
+let imagemPersonagem
+let imagemInimigo
+let somDoPulo
 
-let cenario;
-let somDoJogo;
-let personagem;
-let inimigo;
+let cenario
+let somDoJogo
+let personagem
+let inimigo
 
 const matrizInimigo = [
   [0, 0],
@@ -58,20 +58,20 @@ const matrizPersonagem = [
 ]
 
 function preload() {
-  imagemCenario = loadImage('imagens/cenario/floresta.png');
-  imagemPersonagem = loadImage('imagens/personagem/correndo.png');
-  imagemInimigo = loadImage('imagens/inimigos/gotinha.png');
-  somDoJogo = loadSound('sons/trilha_jogo.mp3');
-  somDoPulo = loadSound('sons/somPulo.mp3');
+  imagemCenario = loadImage('imagens/cenario/floresta.png')
+  imagemPersonagem = loadImage('imagens/personagem/correndo.png')
+  imagemInimigo = loadImage('imagens/inimigos/gotinha.png')
+  somDoJogo = loadSound('sons/trilha_jogo.mp3')
+  somDoPulo = loadSound('sons/somPulo.mp3')
 }
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
-  cenario = new Cenario(imagemCenario, 3);
-  personagem = new Personagem(matrizPersonagem, imagemPersonagem, 0, 110, 135, 220, 270);
-  inimigo = new Inimigo(matrizInimigo, imagemInimigo, width - 52, 52, 52, 104, 104);
+  createCanvas(windowWidth, windowHeight)
+  cenario = new Cenario(imagemCenario, 3)
+  personagem = new Personagem(matrizPersonagem, imagemPersonagem, 0, 110, 135, 220, 270)
+  inimigo = new Inimigo(matrizInimigo, imagemInimigo, width - 52, 52, 52, 104, 104)
   frameRate(40)
-  somDoJogo.loop();
+  somDoJogo.loop()
 }
 
 function keyPressed() {
@@ -82,14 +82,14 @@ function keyPressed() {
 }
 
 function draw() {
-  cenario.exibe();
-  cenario.move();
+  cenario.exibe()
+  cenario.move()
 
-  personagem.exibe();
-  personagem.aplicaGravidade();
+  personagem.exibe()
+  personagem.aplicaGravidade()
 
-  inimigo.exibe();
-  inimigo.move();
+  inimigo.exibe()
+  inimigo.move()
 
   if (personagem.estaColidindo(inimigo)) {
     console.log('colidiu')
