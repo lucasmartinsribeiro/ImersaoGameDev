@@ -102,6 +102,6 @@ function draw() {
 
   if (personagem.estaColidindo(inimigo)) {
     console.log('colidiu')
-    noLoop()
+    noLoop()//para na hora da colisão, o jogo parar
   }
 }

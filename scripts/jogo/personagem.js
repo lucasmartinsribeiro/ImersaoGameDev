@@ -23,7 +23,7 @@ class Personagem extends Animacao{
   }
   
   estaColidindo(inimigo) {
-    const precisao = .7
+    const precisao = .7//para parar de considerar o quadrado do nosso personagem, e só colidir em cima
     const colisao = collideRectRect(
       this.x, 
       this.y, 
