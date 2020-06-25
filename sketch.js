@@ -1,5 +1,10 @@
 //cenario
-let imagemCenario
+let imagemCenario_1;
+let imagemCenario_2;
+let imagemCenario_3;
+let imagemCenario_4;
+let imagemCenario_5;
+
 let cenario
 
 //personagem
@@ -24,7 +29,6 @@ let pontuacao
 let somDoJogo
 let somDoPulo
 let somGameOver
-
 
 
 const matrizInimigo = [
@@ -132,7 +136,14 @@ const inimigos = []
 
 //função de pré carregar as imagens e os sons
 function preload() {
-  imagemCenario = loadImage('imagens/cenario/floresta.png')
+  imagemCenario_1 = loadImage('imagens/cenario/BG_Decor.png')
+  imagemCenario_2 = loadImage('imagens/cenario/Foreground.png')
+  imagemCenario_3 = loadImage('imagens/cenario/Middle_Decor.png')
+  imagemCenario_4 = loadImage('imagens/cenario/Sky.png')
+  imagemCenario_5 = loadImage('imagens/cenario/Ground.png')
+
+  //imagemCenario = loadImage('imagens/cenario/floresta.png')
+
   imagemGameOver = loadImage('imagens/assets/game-over.png')
   imagemPersonagem = loadImage('imagens/personagem/correndo.png')
   imagemInimigo = loadImage('imagens/inimigos/gotinha.png')
@@ -147,7 +158,7 @@ function preload() {
 //função de configuração
 function setup() {
   createCanvas(windowWidth, windowHeight)
-  cenario = new Cenario(imagemCenario, 3)
+  cenario = new Cenario([imagemCenario_1, imagemCenario_2, imagemCenario_3, imagemCenario_4, imagemCenario_5], 3)
   pontuacao = new Pontuacao()
 
   personagem = new Personagem(matrizPersonagem, imagemPersonagem, 0, 30, 110, 135, 220, 270)
@@ -177,12 +188,17 @@ function keyPressed() {
 function draw() {
   cenario.exibe()
   cenario.move()
+  cenario.exibeGrama()
 
   pontuacao.exibe()
   pontuacao.adicionarPonto()
   
   personagem.exibe()
   personagem.aplicaGravidade()
+
+  
+
+  
 
   inimigos.forEach(inimigo => {
     inimigo.exibe()
@@ -196,4 +212,6 @@ function draw() {
       image(imagemGameOver, width/2 - 200, height/3)
     }
   })
+
+  
 }
