@@ -23,6 +23,7 @@ let pontuacao
 //som
 let somDoJogo
 let somDoPulo
+let somGameOver
 
 
 
@@ -140,6 +141,7 @@ function preload() {
 
   somDoJogo = loadSound('sons/trilha_jogo.mp3')
   somDoPulo = loadSound('sons/somPulo.mp3')
+  somGameOver = loadSound('sons/gameOver.wav')
 }
 
 //função de configuração
@@ -187,9 +189,11 @@ function draw() {
     inimigo.move()
 
     if (personagem.estaColidindo(inimigo)) {
+      somDoJogo.stop()
+      noLoop()//para na hora da colisão, o jogo parar
+      somGameOver.play()
       //na largura eu subitrai pelo tamanho da imagem
       image(imagemGameOver, width/2 - 200, height/3)
-      noLoop()//para na hora da colisão, o jogo parar
     }
   })
 }
