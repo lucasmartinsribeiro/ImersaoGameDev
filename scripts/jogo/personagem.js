@@ -1,29 +1,39 @@
-class Personagem extends Animacao{
-  constructor(matriz, imagem, x, largura, altura, larguraSprite, alturaSprite){
-    super(matriz, imagem, x, largura, altura, larguraSprite, alturaSprite);
+class Personagem extends Animacao {
+  constructor(matriz, imagem, x, variacaoY, largura, altura, larguraSprite, alturaSprite){
+    super(matriz, imagem, x, variacaoY, largura, altura, larguraSprite, alturaSprite)
     
-    this.yInicial = height - this.altura
+    this.variacaoY = variacaoY
+    this.yInicial = height - this.altura - this.variacaoY
     this.y = this.yInicial
     
     this.velocidadeDoPulo = 0
-    this.gravidade = 3
+    this.gravidade = 6 //diminui ou aumenta a altura do pulo
+    this.alturaDoPulo = -50
+    this.pulos = 0
+    this.quantidadeMaximaDePulos = 2
   }
   
+  //calculo a velocidade do pulo e coloco um limite de pulo de no máximo 2
   pula() {
-    this.velocidadeDoPulo = -30
+    if(this.pulos < this.quantidadeMaximaDePulos) {
+      this.velocidadeDoPulo = this.alturaDoPulo
+      this.pulos++
+    }
   }
   
   aplicaGravidade() {
     this.y = this.y + this.velocidadeDoPulo
     this.velocidadeDoPulo = this.velocidadeDoPulo + this.gravidade
     
+    //eu faço a validação que ela pausou no chão, e depois disso eu restauro os números de pulos dela
     if(this.y > this.yInicial){
       this.y = this.yInicial
+      this.pulos = 0
     }
   }
   
   estaColidindo(inimigo) {
-    const precisao = .7//para parar de considerar o quadrado do nosso personagem, e só colidir em cima
+    const precisao = .7
     const colisao = collideRectRect(
       this.x, 
       this.y, 
