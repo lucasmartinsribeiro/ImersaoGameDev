@@ -1,179 +1,11 @@
-//cenario
-let imagemCenario_1;
-let imagemCenario_2;
-let imagemCenario_3;
-let imagemCenario_4;
-let imagemCenario_5;
-
-let cenario
-
-//personagem
-let imagemPersonagem
-let personagem
-
-//inimigos
-let imagemInimigo
-let imagemInimigoGrande
-let imagemInimigoVoador
-let inimigo
-let inimigoGrande
-let inimigoVoador
-
-//game over
-let imagemGameOver
-
-//pontuacao
-let pontuacao
-
-//som
-let somDoJogo
-let somDoPulo
-let somGameOver
-
-
-const matrizInimigo = [
-  [0, 0],
-  [105, 0],
-  [210, 0],
-  [315, 0],
-  [0, 104],
-  [105, 104],
-  [210, 104],
-  [315, 104],
-  [0, 208],
-  [105, 208],
-  [210, 208],
-  [315, 208],
-  [0, 312],
-  [105, 312],
-  [210, 312],
-  [315, 312],
-  [0, 409],
-  [105, 409],
-  [210, 409],
-  [315, 409],
-  [0, 503],
-  [105, 503],
-  [210, 503],
-  [315, 503],
-  [0, 609],
-  [105, 609],
-  [210, 609],
-  [315, 609],
-]
-
-const matrizPersonagem = [
-  [0, 0],
-  [220, 0],
-  [440, 0],
-  [660, 0],
-  [0, 270],
-  [220, 270],
-  [440, 270],
-  [660, 270],
-  [0, 540],
-  [220, 540],
-  [440, 540],
-  [660, 540],
-  [0, 810],
-  [220, 810],
-  [440, 810],
-  [660, 810],
-]
-
-const matrizInimigoGrande = [
-  [0,0],
-  [400,0],
-  [800,0],
-  [1200,0],
-  [1600,0],
-  [0,400],
-  [400,400],
-  [800,400],
-  [1200, 400],
-  [1600, 400],
-  [0,800],
-  [400, 800],
-  [800, 800],
-  [1200, 800],
-  [1600, 800],
-  [0, 1200],
-  [400, 1200],
-  [800, 1200],
-  [1200, 1200],
-  [1600, 1200], 
-  [0, 1600],
-  [400, 1600],
-  [800, 1600],
-  [1200, 1600],
-  [1600, 1600],
-  [0, 2000],
-  [400, 2000],
-  [800, 2000],
-]
-
-const matrizInimigoVoador = [
-  [0,0],
-  [200, 0],
-  [400, 0],
-  [0, 150],
-  [200, 150],
-  [400, 150],
-  [0, 300],
-  [200, 300],
-  [400, 300],
-  [0, 450],
-  [200, 450],
-  [400, 450],
-  [0, 600],
-  [200, 600],
-  [400, 600],
-  [0, 750],
-]
-
-//array de inimigos
-const inimigos = []
-
-//função de pré carregar as imagens e os sons
-function preload() {
-  imagemCenario_1 = loadImage('imagens/cenario/BG_Decor.png')
-  imagemCenario_2 = loadImage('imagens/cenario/Foreground.png')
-  imagemCenario_3 = loadImage('imagens/cenario/Middle_Decor.png')
-  imagemCenario_4 = loadImage('imagens/cenario/Sky.png')
-  imagemCenario_5 = loadImage('imagens/cenario/Ground.png')
-
-  //imagemCenario = loadImage('imagens/cenario/floresta.png')
-
-  imagemGameOver = loadImage('imagens/assets/game-over.png')
-  imagemPersonagem = loadImage('imagens/personagem/correndo.png')
-  imagemInimigo = loadImage('imagens/inimigos/gotinha.png')
-  imagemInimigoVoador = loadImage('imagens/inimigos/gotinha-voadora.png')
-  imagemInimigoGrande = loadImage('imagens/inimigos/troll.png')
-
-  somDoJogo = loadSound('sons/trilha_jogo.mp3')
-  somDoPulo = loadSound('sons/somPulo.mp3')
-  somGameOver = loadSound('sons/gameOver.wav')
-}
-
 //função de configuração
 function setup() {
   createCanvas(windowWidth, windowHeight)
-  cenario = new Cenario([imagemCenario_1, imagemCenario_2, imagemCenario_3, imagemCenario_4, imagemCenario_5], 3)
-  pontuacao = new Pontuacao()
-
-  personagem = new Personagem(matrizPersonagem, imagemPersonagem, 0, 30, 110, 135, 220, 270)
-
-  const inimigo = new Inimigo(matrizInimigo, imagemInimigo, width - 52, 30, 52, 52, 104, 104, 10, 200)
-  const inimigoVoador = new Inimigo(matrizInimigoVoador, imagemInimigoVoador, width - 52, 200, 100, 75, 200, 150, 10, 1500)
-  const inimigoGrande = new Inimigo(matrizInimigoGrande, imagemInimigoGrande, width, 0, 200, 200, 400, 400, 10, 2500)
-
-  //adicionar esses inimigos dentro do array
-  inimigos.push(inimigo)
-  inimigos.push(inimigoGrande)
-  inimigos.push(inimigoVoador)
 
   frameRate(40)
   somDoJogo.loop()
+  jogo = new Jogo()
+  jogo.setup()
 }
 
 //função de pressionar
@@ -200,9 +32,23 @@ function draw() {
 
   
 
-  inimigos.forEach(inimigo => {
+    const inimigo = inimigos[inimigoAtual]
+
+    //a posição do inimigo é menor que o negativo da largura  
+    const inimigoVisivel = inimigo.x < -inimigo.largura
+
     inimigo.exibe()
     inimigo.move()
+
+    //se o inimigo já tiver passado inteiro, ai o outro pode vir
+    if(inimigoVisivel){
+      //pegar o inimigoAtual que era zero e andar 1
+      inimigoAtual++
+      if(inimigoAtual > 2){
+        inimigoAtual = 0
+      }
+      Inimigo.velocidade = parseInt(random(10, 30))
+    }
 
     if (personagem.estaColidindo(inimigo)) {
       somDoJogo.stop()
@@ -211,7 +57,6 @@ function draw() {
       //na largura eu subitrai pelo tamanho da imagem
       image(imagemGameOver, width/2 - 200, height/3)
     }
-  })
 
   
 }
