@@ -31,8 +31,8 @@ let somDoJogo
 let somDoPulo
 let somGameOver
 
-//indice do inimigo atual
-let inimigoAtual = 0
+let cenaAtual = 'telaInicial'
+let cenas
 
 const matrizInimigo = [
   [0, 0],
