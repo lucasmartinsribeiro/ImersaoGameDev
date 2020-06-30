@@ -1,27 +1,55 @@
+// class Cenario {
+//   constructor(imagem, velocidade){
+//     this.imagem = imagem;
+//     this.velocidade = velocidade;
+//     this.x1 = 0;
+//     this.x2 = width;
+//   }
+  
+//   exibe() {
+//     image(this.imagem, this.x1, 0, width, height);
+//     image(this.imagem,this.x2, 0, width, height);
+//   }
+  
+//   move() {
+//     this.x1 = this.x1 - this.velocidade;
+//     this.x2 = this.x2 - this.velocidade;
+    
+//     if (this.x1 < -width){
+//       this.x1 = width;
+//     }
+//     if (this.x2 < -width){
+//       this.x2 = width;
+//     }
+//   }
+// }
+
+
+
 class Cenario{
   constructor(arrayImagem, velocidade){
-    this.arrayImagem = arrayImagem;
-    this.imagem = this.arrayImagem[0];
-    this.velocidade = velocidade;
-    this.velocidade2 = velocidade * 1.2;
-    this.velocidade3 = velocidade * 0.8;
-    this.velocidade4 = velocidade * 1.4;
+    this.arrayImagem = arrayImagem
+    this.imagem = this.arrayImagem[0]
+    this.velocidade = velocidade
+    this.velocidade2 = velocidade * 1.2
+    this.velocidade3 = velocidade * 0.8
+    this.velocidade4 = velocidade * 1.4
     
-    this.x1 = 0;
-    this.x2 = width;
+    this.x1 = 0
+    this.x2 = width
     
-    this.x12 = 0;
-    this.x22 = width;
+    this.x12 = 0
+    this.x22 = width
     
     this.x13 = 0;
-    this.x23 = width;
+    this.x23 = width
     
-    this.x14 = 0;
-    this.x24 = width;
+    this.x14 = 0
+    this.x24 = width
   }
   
   exibe(){
-    image(this.arrayImagem[3], this.x1, 0, width, height); 
+    image(this.arrayImagem[3], this.x1, 0, width, height)
     image(this.arrayImagem[3], this.x2, 0, width, height);
     
     image(this.arrayImagem[0], this.x13, 0, width, height); 

@@ -1,38 +1,41 @@
 //cenario
-let imagemCenario_1;
-let imagemCenario_2;
-let imagemCenario_3;
-let imagemCenario_4;
-let imagemCenario_5;
-let cenario
+let imagemCenario_1
+let imagemCenario_2
+let imagemCenario_3
+let imagemCenario_4
+let imagemCenario_5
+//let imagemCenario;
 
-let jogo
 
-//personagem
-let imagemPersonagem
-let personagem
+let imagemPersonagem;
+let imagemInimigo;
+let imagemInimigoGrande;
+let imagemInimigoVoador;
+let imagemGameOver;
+let imagemTelaInicial;
+let imagemVida;
 
-//inimigos
-let imagemInimigo
-let imagemInimigoGrande
-let imagemInimigoVoador
-let inimigo
-let inimigoGrande
-let inimigoVoador
+let fonteTelaInicial;
+let somDoPulo;
 
-//game over
-let imagemGameOver
+let jogo;
 
-//pontuacao
-let pontuacao
+let fita
 
-//som
-let somDoJogo
-let somDoPulo
-let somGameOver
+let cenaAtual = 'telaInicial';
+let cenas;
+let telaInicial;
+let botaoGerenciador;
+let vida;
 
-let cenaAtual = 'telaInicial'
-let cenas
+let cenario;
+let somDoJogo;
+let personagem;
+let inimigo;
+let inimigoGrande;
+let inimigoVoador;
+let pontuacao;
+
 
 const matrizInimigo = [
   [0, 0],
@@ -82,7 +85,7 @@ const matrizPersonagem = [
   [220, 810],
   [440, 810],
   [660, 810],
-]
+];
 
 const matrizInimigoGrande = [
   [0,0],
@@ -113,7 +116,7 @@ const matrizInimigoGrande = [
   [0, 2000],
   [400, 2000],
   [800, 2000],
-]
+];
 
 const matrizInimigoVoador = [
   [0,0],
@@ -132,7 +135,6 @@ const matrizInimigoVoador = [
   [200, 600],
   [400, 600],
   [0, 750],
-]
+];
 
-//array de inimigos
-const inimigos = []
+const inimigos = [];

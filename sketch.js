@@ -1,22 +1,28 @@
-//função de configuração
 function setup() {
-  createCanvas(windowWidth, windowHeight)
-
-  frameRate(40)
-  somDoJogo.loop()
-  jogo = new Jogo()
-  jogo.setup()
-  cenaAtual = 'jogo'
-}
-
-//função de pressionar tecla
-function keyPressed() {
-  jogo.keyPressed(key)
-}
-
-//função de desenhar na tela
-function draw() {
-  if(cenaAtual === 'jogo'){
-    jogo.draw()
+  
+  createCanvas(windowWidth, windowHeight);
+  frameRate(40);
+  
+  somDoJogo.loop();
+  
+  jogo = new Jogo();
+  
+  telaInicial = new TelaInicial();
+  
+  jogo.setup();
+  
+  cenas = {
+    jogo,
+    telaInicial
   }
+  
+  botaoGerenciador = new BotaoGerenciador('Jogar', width/2, height/2);
+}
+
+function keyPressed() {
+ jogo.keyPressed(key)
+}
+
+function draw() {
+  cenas[cenaAtual].draw()
 }
